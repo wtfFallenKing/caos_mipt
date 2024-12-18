@@ -27,7 +27,7 @@ void _start() {
   char buffer[buffer_size];
   
   while ((read_amount_bytes = read(STDIN, buffer, buffer_size)) > 0) {
-    if (write(STDOUT, buffer, read_amount_bytes)) {
+    if (write(STDOUT, buffer, read_amount_bytes) < 0) {
       _exit(EXIT_FAIL);
     }
   }
