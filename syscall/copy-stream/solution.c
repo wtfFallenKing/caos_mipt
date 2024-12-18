@@ -23,7 +23,7 @@ void _exit(int status) {
 
 void _start() {
   int read_amount_bytes = 0;
-  const unsigned int buffer_size = 1024;
+  const unsigned int buffer_size = 4096;
   char buffer[buffer_size];
   
   while ((read_amount_bytes = read(STDIN, buffer, buffer_size)) > 0) {
@@ -38,5 +38,3 @@ void _start() {
 
   _exit(EXIT_OK);
 }
-
-// stdin = 0, stdout = 1, exit_ok = 0, exit_fail = 1, sys_read = 0, sys_write = 1, sys_exit = 60
