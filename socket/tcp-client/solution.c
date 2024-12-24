@@ -39,7 +39,7 @@ int main(int argc, char const* argv[]) {
   int value;
   int status = 0;
   while (scanf("%d", &value) != EOF) {
-    status = send(sock, &value, sizeof(value), 0);
+    status = write(sock, &value, sizeof(value));
     if (status == -1 && errno == ECONNRESET || status == 0) {
       shutdown(sock, SHUT_RDWR);
       close(sock);
@@ -49,7 +49,7 @@ int main(int argc, char const* argv[]) {
       close(sock);
       error("Data sending error");
     }
-    status = recv(sock, &value, sizeof(value), 0);
+    status = read(sock, &value, sizeof(value));
     if (status == -1 && errno == ECONNRESET || status == 0) {
       shutdown(sock, SHUT_RDWR);
       close(sock);
